@@ -1,0 +1,172 @@
+/* ===== About Section ===== */
+.about__heading {
+  font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
+  margin-bottom: 3rem;
+}
+
+/* Bento Grid */
+.about__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
+}
+
+.about__card {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.about__card:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+
+/* Card Icon */
+.about__card-icon {
+  background: rgba(139, 92, 246, 0.1);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  color: var(--accent-purple-light);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.about__card-icon--blue {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-blue);
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+.about__card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.about__card p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Skills List */
+.about__skills-list {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding-left: 1rem;
+  list-style: disc;
+}
+
+.about__skills-list li {
+  margin-bottom: 0.35rem;
+  list-style: disc;
+}
+
+/* Tech Pills */
+.about__pills {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.about__pill {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.about__pill:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple-light);
+}
+
+/* Stats Card */
+.about__card--stats,
+.about__card--focus {
+  align-items: center;
+  text-align: center;
+}
+
+.about__stat-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about__stat-number {
+  font-size: 4rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--accent-purple);
+  line-height: 1;
+}
+
+.about__stat-number--blue {
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about__stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* Learning Card */
+.about__card--learning h3 {
+  font-size: 1.3rem;
+}
+
+.about__learning-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.about__learning-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.about__learning-item svg {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__card {
+    padding: 2rem;
+  }
+
+  .about__stat-number {
+    font-size: 3rem;
+  }
+}
