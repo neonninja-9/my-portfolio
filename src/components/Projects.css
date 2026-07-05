@@ -73,3 +73,20 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Large Screens ===== */
+@media (min-width: 1440px) {
+  .projects__heading {
+    font-size: 3.2rem;
+  }
+
+  .projects__desc {
+    max-width: 650px;
+    font-size: 1.15rem;
+  }
+
+  .projects__filter {
+    padding: 0.65rem 1.6rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,59 @@
+.liquid-text-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  /* Ensure the text doesn't cause overflow issues */
+  overflow: hidden;
+}
+
+.liquid-filter-def {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.liquid-text {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.1;
+  margin: 0;
+  
+  /* Animated gradient */
+  background: linear-gradient(
+    270deg,
+    #ec4899,
+    #8b5cf6,
+    #06b6d4,
+    #3b82f6,
+    #ec4899
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  
+  animation: gradientFlow 10s ease infinite;
+  
+  /* Apply the liquid SVG filter */
+  filter: url(#liquid-filter);
+  
+  /* Smooth drop shadow for depth */
+  text-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+  /* Note: text-shadow combined with transparent text and filters 
+     can be tricky in some browsers. We might use a pseudo-element if needed. */
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

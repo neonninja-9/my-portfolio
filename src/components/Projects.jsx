@@ -1,12 +1,10 @@
 import { useState, useCallback } from 'react';
 import { projects, projectCategories } from '../data/projects';
-import ProjectCard from './ProjectCard';
-import { useStaggerReveal } from '../hooks/useScrollReveal';
+import StackedProjects from './ui/StackedProjects';
 import './Projects.css';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const containerRef = useStaggerReveal({ staggerDelay: 0.08 });
 
   const filteredProjects =
     activeFilter === 'all'
@@ -38,13 +36,9 @@ export default function Projects() {
         ))}
       </div>
 
-      <div className="projects__grid" ref={containerRef} key={activeFilter}>
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-
-      {filteredProjects.length === 0 && (
+      {filteredProjects.length > 0 ? (
+        <StackedProjects projects={filteredProjects} key={activeFilter} />
+      ) : (
         <p className="projects__empty">
           No projects in this category yet. Stay tuned!
         </p>

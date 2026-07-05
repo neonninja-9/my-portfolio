@@ -78,3 +78,19 @@
     padding: 1.5rem;
   }
 }
+
+/* ===== Large Screens ===== */
+@media (min-width: 1440px) {
+  .techstack__grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .techstack__category {
+    padding: 2.5rem;
+  }
+
+  .techstack__item-name {
+    font-size: 1.05rem;
+  }
+}

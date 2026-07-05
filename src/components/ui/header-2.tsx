@@ -60,8 +60,8 @@ export function Header() {
 				)}
 			>
 				<nav className="site-header__nav">
-					<a href="#hero" className="site-header__logo-link" onClick={(e) => handleNavClick(e, '#hero')}>
-						<WordmarkIcon className="site-header__logo" />
+					<a href="#hero" className="site-header__logo-link flex items-center" onClick={(e) => handleNavClick(e, '#hero')}>
+						<span className="text-xl font-bold tracking-tight text-white">gourav.dev</span>
 					</a>
 
 					<div className="site-header__links">

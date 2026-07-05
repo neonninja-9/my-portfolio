@@ -6,14 +6,15 @@ export default function Timeline() {
   const containerRef = useScrollReveal();
 
   return (
-    <section id="journey" className="timeline-section section-container">
+    <section id="journey" className="timeline-section section-container" style={{ overflow: 'visible' }}>
       <h2 className="timeline__heading">
         My <span className="dimmed">Timeline</span>
       </h2>
 
-      <div className="timeline-radial-container reveal" ref={containerRef}>
+      <div className="timeline-radial-container reveal" ref={containerRef} style={{ overflow: 'visible' }}>
         <RadialTimeline />
       </div>
     </section>
   );
 }
+

@@ -1,0 +1,81 @@
+.hero-terminal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6vh 6vw;
+  cursor: default;
+}
+
+.hero-terminal::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.9) 75%);
+  pointer-events:none;
+  z-index: 1;
+}
+
+.hero-terminal__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 780px;
+}
+
+#terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 2vw, 20px);
+  line-height: 1.65;
+  color: #E5E5E5;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 40vh;
+}
+
+.term-line { opacity: 0; animation: termFadeIn 350ms ease forwards; }
+@keyframes termFadeIn { from{ opacity:0; transform: translateY(2px);} to{ opacity:1; transform: translateY(0);} }
+
+.term-line.typing { opacity: 1; animation:none; }
+
+.term-line.dim { color: #8A8A93; }
+.term-line.green { color: #3DDC84; }
+.term-line.blue { color: #5AA9FF; }
+.term-line.purple { color: #B58CFF; }
+.term-line.grey { color: #8A8A93; }
+.term-line.indent { padding-left: 22px; color: #cfcfd4; }
+.term-line.big { font-size: clamp(24px, 4vw, 40px); font-weight: 600; color: #fff; margin-top: 6px; }
+
+.term-cursor {
+  display:inline-block;
+  width: 9px; height: 1.1em;
+  background: #E5E5E5;
+  vertical-align: text-bottom;
+  margin-left: 3px;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+
+#loading-bar-wrap { display:flex; align-items:center; gap: 12px; margin-top: 2px; }
+#loading-bar-track { color: #5AA9FF; letter-spacing: 1px; }
+#loading-bar-pct { color: #8A8A93; }
+
+.hero-terminal__skip {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #55555c;
+  opacity: 0;
+  animation: hintFade 600ms ease 1200ms forwards;
+  letter-spacing: 0.02em;
+  z-index: 2;
+}
+@keyframes hintFade { to{ opacity: 1; } }

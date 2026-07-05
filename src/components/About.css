@@ -170,3 +170,18 @@
     font-size: 3rem;
   }
 }
+
+/* ===== Large Screens ===== */
+@media (min-width: 1440px) {
+  .about__card {
+    padding: 3rem;
+  }
+
+  .about__card h3 {
+    font-size: 1.8rem;
+  }
+
+  .about__stat-number {
+    font-size: 5rem;
+  }
+}

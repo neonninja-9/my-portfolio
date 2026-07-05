@@ -71,7 +71,7 @@
 
   /* Spacing */
   --section-padding: 6rem 1.5rem;
-  --max-width: 1200px;
+  --max-width: clamp(1200px, 85vw, 1600px);
 
   /* Radius */
   --radius-sm: 8px;
@@ -248,19 +248,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .glass-card::after,
 .spotlight-card::after {
-  inset: -1px;
+  inset: 0;
   z-index: 0;
   border-radius: inherit;
   padding: 1px;
   background:
     radial-gradient(
-      380px circle at var(--spotlight-x) var(--spotlight-y),
+      280px circle at var(--spotlight-x) var(--spotlight-y),
       rgba(244, 114, 182, 0.95),
-      rgba(139, 92, 246, 0.7) 34%,
-      rgba(255, 255, 255, 0.08) 64%,
-      transparent 78%
+      rgba(139, 92, 246, 0.7) 40%,
+      rgba(255, 255, 255, 0.08) 65%,
+      transparent 80%
     );
-  opacity: 0.2;
+  opacity: 1;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
@@ -271,8 +271,8 @@ h1, h2, h3, h4, h5, h6 {
 .glass-card:focus-within,
 .spotlight-card:hover,
 .spotlight-card:focus-within {
-  border-color: rgba(244, 114, 182, 0.5);
-  box-shadow: 0 0 42px rgba(168, 85, 247, 0.2),
+  /* Removed solid border-color so only the spotlight edge glows */
+  box-shadow: 0 0 42px rgba(168, 85, 247, 0.15),
               0 22px 55px rgba(0, 0, 0, 0.36);
 }
 
@@ -436,5 +436,18 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 500px) {
   :root {
     --section-padding: 3rem 1rem;
+  }
+}
+
+/* ===== Large Screen Scaling ===== */
+@media (min-width: 1440px) {
+  :root {
+    --section-padding: 7rem 2.5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --section-padding: 8rem 3rem;
   }
 }

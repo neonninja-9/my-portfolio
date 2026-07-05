@@ -4,6 +4,7 @@ import { contactInfo } from '../data/socialLinks';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import GlowButton from './GlowButton';
 import Loader from './Loader';
+import ConnectIcons from './ui/ConnectIcons';
 import './Contact.css';
 
 
@@ -102,6 +103,10 @@ export default function Contact() {
                 <span className="contact__method-value">{contactInfo.location}</span>
               </div>
             </div>
+          </div>
+
+          <div className="contact__socials" style={{ marginTop: '1.5rem' }}>
+            <ConnectIcons />
           </div>
 
         </div>
