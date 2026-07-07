@@ -81,7 +81,7 @@ export default function HeroTypewriter() {
       <motion.span 
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
-        style={{ display: 'inline-block', width: '0.6em', background: 'currentColor', height: '0.8em', marginLeft: '4px', verticalAlign: 'baseline' }}
+        style={{ display: 'inline-block', width: '4px', background: 'currentColor', height: '1em', marginLeft: '4px', verticalAlign: 'text-bottom' }}
       />
     </motion.h1>
   );
