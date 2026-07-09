@@ -171,6 +171,21 @@
   }
 }
 
+@media (max-width: 500px) {
+  .about__card {
+    padding: 1.5rem;
+  }
+
+  .about__stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .about__pill {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.65rem;
+  }
+}
+
 /* ===== Large Screens ===== */
 @media (min-width: 1440px) {
   .about__card {

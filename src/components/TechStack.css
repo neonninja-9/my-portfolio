@@ -183,6 +183,7 @@
     bottom: 1rem;
     min-width: unset;
     max-width: unset;
+    padding: 1rem;
   }
 
   .techgraph-filters {

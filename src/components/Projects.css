@@ -72,6 +72,15 @@
   .projects__grid {
     grid-template-columns: 1fr;
   }
+  
+  .projects__filters {
+    gap: 0.45rem;
+  }
+  
+  .projects__filter {
+    padding: 0.45rem 1rem;
+    font-size: 0.75rem;
+  }
 }
 
 /* ===== Large Screens ===== */
