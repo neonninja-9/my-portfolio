@@ -101,7 +101,7 @@ export default function Hero() {
               </button>
               <button 
                 className="hero-cinematic__btn hero-cinematic__btn--secondary"
-                onClick={() => window.open('/resume.pdf', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1h9-SYShIcLPjyPc1NH4TEvt_BPskrEPM/view?usp=sharing', '_blank')}
               >
                 Download Resume
               </button>

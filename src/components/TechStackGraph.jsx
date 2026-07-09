@@ -24,21 +24,21 @@ import {
 // Tweak these after seeing the graph live to adjust "spread"
 const FORCE_CONFIG = {
   /** Link pull strength (higher = tighter connected nodes) */
-  linkStrength: 0.15,
+  linkStrength: 0.1,
   /** Natural link rest distance */
-  linkDistance: 100,
+  linkDistance: 130,
   /** Node repulsion (more negative = more spread) */
-  chargeStrength: -220,
+  chargeStrength: -320,
   /** How fast charge falls off with distance */
-  chargeDistanceMax: 350,
+  chargeDistanceMax: 400,
   /** Pull toward center (keeps graph from drifting off-screen) */
-  centerStrength: 0.05,
+  centerStrength: 0.04,
   /** Category cluster gravity — pulls nodes toward their quadrant */
-  clusterStrength: 0.08,
+  clusterStrength: 0.07,
   /** Extra cluster pull when a filter is active */
   clusterStrengthFiltered: 0.25,
   /** Collision padding beyond node radius */
-  collisionPadding: 6,
+  collisionPadding: 12,
   /** Ambient drift — keep > 0 so nodes never fully freeze */
   alphaTarget: 0.015,
   /** How fast simulation cools */
@@ -88,8 +88,8 @@ export default function TechStackGraph() {
     const measure = () => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const w = Math.min(rect.width, 1200);
-      const h = Math.min(Math.max(w * 0.6, 400), 750);
+      const w = Math.min(rect.width, 1500);
+      const h = Math.min(Math.max(w * 0.75, 550), 1000);
       setDimensions({ width: w, height: h });
     };
     measure();
@@ -107,7 +107,7 @@ export default function TechStackGraph() {
       map[l.target]?.add(l.source);
     });
     return map;
-  }, []);
+  }, [skills]);
 
   const isRelated = useCallback(
     (nodeId) => {
@@ -447,7 +447,7 @@ export default function TechStackGraph() {
 
   // ─── Render ────────────────────────────────────────────────
   return (
-    <div ref={containerRef} className="techgraph-container">
+    <div ref={containerRef} className="techgraph-container spotlight-card">
       {/* Filter chips */}
       <div className="techgraph-filters">
         {CATEGORIES.map((cat) => (
