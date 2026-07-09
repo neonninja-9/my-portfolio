@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ThemeSwitch = () => {
-  const [isLight, setIsLight] = useState(false);
-
-  useEffect(() => {
-    if (document.documentElement.classList.contains('light-mode')) {
-      setIsLight(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (isLight) {
-      document.documentElement.classList.remove('light-mode');
-    } else {
-      document.documentElement.classList.add('light-mode');
-    }
-    setIsLight(!isLight);
-  };
-
   return (
     <StyledWrapper>
-      <input 
-        type="checkbox" 
-        role="switch" 
-        className="liquid-3" 
-        checked={isLight}
-        onChange={toggleTheme}
-        aria-label="Toggle light mode"
+      <input
+        type="checkbox"
+        role="switch"
+        className="liquid-3"
+        checked={false}
+        readOnly
+        aria-label="Toggle button"
       />
     </StyledWrapper>
   );
