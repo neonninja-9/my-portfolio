@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const SEQUENCE = [
   { text: "Hi, I'm Gourav.", keep: 0 },
-  { text: "I build software,", keep: 8 },
+  { text: "I build softwares,", keep: 8 },
   { text: "I build AI systems,", keep: 8 },
   { text: "I build ideas people actually use.", keep: 0 },
 ];
