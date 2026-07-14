@@ -91,7 +91,7 @@ export default function Hero() {
           <motion.div className="hero-cinematic__content">
             <motion.div variants={itemVariants} className="hero-cinematic__eyebrow">
               <Sparkles size={16} />
-              Available for product engineering work
+              Available for impactful engineering projects
             </motion.div>
 
             <HeroTypewriter />
@@ -115,8 +115,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.p variants={itemVariants} className="hero-cinematic__intro">
-              I build clean full-stack applications with reliable APIs, accessible interfaces,
-              and maintainable engineering foundations.
+              I design and ship reliable full-stack products with thoughtful interfaces,
+              scalable APIs, and the polish users expect from production software.
             </motion.p>
 
             <motion.div
@@ -140,9 +140,9 @@ export default function Hero() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="hero-cinematic__proof">
-              <span><strong>10+</strong> projects</span>
-              <span><strong>Backend</strong> focused</span>
-              <span><strong>Open source</strong> contributor</span>
+              <span><strong>10+</strong> shipped projects</span>
+              <span><strong>AI/ML</strong> focused CSE</span>
+              <span><strong>OSS</strong> contributor</span>
             </motion.div>
           </motion.div>
         </motion.div>

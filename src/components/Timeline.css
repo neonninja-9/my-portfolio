@@ -130,6 +130,6 @@
 
 .timeline__item:hover .timeline__content {
   transform: translateX(8px);
-  border-color: rgba(147, 197, 253, 0.24);
+  border-color: rgba(167, 139, 250, 0.28);
   background: rgba(255, 255, 255, 0.055);
 }

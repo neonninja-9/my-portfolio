@@ -218,8 +218,8 @@
 .about__card--philosophy {
   min-height: 320px;
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.072), rgba(255, 255, 255, 0.032));
+    linear-gradient(135deg, rgba(139, 92, 246, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035));
 }
 
 .about__card h3 {
