@@ -99,3 +99,33 @@
     font-size: 0.9rem;
   }
 }
+
+/* Professional editorial refinements */
+.projects {
+  isolation: isolate;
+}
+
+.projects__heading,
+.about__heading,
+.techstack__heading,
+.timeline__heading {
+  letter-spacing: -0.055em;
+}
+
+.projects__desc {
+  line-height: 1.75;
+}
+
+.projects__filters {
+  padding: 0.35rem;
+  width: fit-content;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(16px);
+}
+
+.projects__filter--active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(59, 130, 246, 0.9));
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.18);
+}
