@@ -21,59 +21,47 @@ const StyledWrapper = styled.div`
   align-items: center;
 
   .liquid-3 {
-    --primary: #000;
-    --secondary: #fff;
-    --time: 0.6s;
     appearance: none;
     position: relative;
     cursor: pointer;
-    font-size: 5px; /* Scales the entire button to 50px width */
-    width: 10em;
-    aspect-ratio: 2 / 1;
-    background: var(--primary);
-    border-radius: 20em;
-    box-shadow: 0 0 0 0.5em var(--secondary);
-    transform: translateX(0.5px);
-    transition: transform var(--time) cubic-bezier(0.75, 0, 0.75, 50);
-    filter: blur(0.66em) contrast(20);
-    mix-blend-mode: normal; /* Changed from darken to normal to show on dark backgrounds */
-    overflow: hidden;
+    width: 3.2rem;
+    height: 1.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(226, 232, 240, 0.18);
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+    transition: border-color 180ms ease, background 180ms ease;
+  }
 
-    &::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 100%;
-      transform: translate(-25%, -50%);
-      left: 50%;
-      top: 50%;
-      background: radial-gradient(
-          closest-side circle at 12.5% 50%,
-          var(--secondary) 50%,
-          #0000 0
-        ),
-        radial-gradient(
-          closest-side circle at 87.5% 50%,
-          var(--secondary) 50%,
-          #0000 0
-        ),
-        #f000;
-      transition: transform var(--time) cubic-bezier(0.75, 0, 0.75, 1.3);
-    }
+  .liquid-3::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.28rem;
+    width: 1.08rem;
+    height: 1.08rem;
+    border-radius: 50%;
+    background: #f8fafc;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 180ms ease, background 180ms ease;
+  }
 
-    &:checked {
-      transform: translateX(-0.5px);
-      &::before {
-        transform: translate(-75%, -50%);
-      }
-    }
+  .liquid-3:checked::before {
+    transform: translate(1.35rem, -50%);
+  }
+
+  .liquid-3:hover {
+    border-color: rgba(147, 197, 253, 0.42);
   }
   
-  /* When in light mode, invert the switch colors so it remains visible */
   :global(.light-mode) .liquid-3 {
-    --primary: #fff;
-    --secondary: #000;
-    box-shadow: 0 0 0 0.5em var(--secondary);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.16);
+  }
+
+  :global(.light-mode) .liquid-3::before {
+    background: #0f172a;
   }
 `;
 

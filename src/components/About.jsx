@@ -1,4 +1,4 @@
-import { User, BookOpen, Zap } from 'lucide-react';
+import { User, BookOpen } from 'lucide-react';
 import { useStaggerReveal } from '../hooks/useScrollReveal';
 import './About.css';
 

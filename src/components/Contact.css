@@ -250,3 +250,34 @@
     font-size: 2.8rem;
   }
 }
+
+/* Designer polish */
+.contact__card {
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.1), transparent 34rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+}
+
+.contact__heading {
+  letter-spacing: -0.05em;
+}
+
+.contact__method-icon,
+.contact__social-btn,
+.contact__form-group input,
+.contact__form-group textarea {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.contact__submit {
+  min-height: 52px;
+  border-radius: 999px;
+  background: var(--gradient-main);
+  box-shadow: 0 18px 45px rgba(59, 130, 246, 0.18);
+}
+
+.contact__submit:hover:not(:disabled) {
+  background: var(--gradient-main);
+  filter: brightness(1.08);
+}

@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 const SEQUENCE = [
   { text: "Hi, I'm Gourav.", keep: 0 },
-  { text: "I build softwares,", keep: 8 },
-  { text: "I build AI systems,", keep: 8 },
-  { text: "I build ideas people actually use.", keep: 0 },
+  { text: "I build reliable software.", keep: 8 },
+  { text: "I build thoughtful interfaces.", keep: 8 },
+  { text: "I build practical AI products.", keep: 0 },
 ];
 
 const TYPING_SPEED = 60;
@@ -50,18 +50,14 @@ export default function HeroTypewriter() {
     return () => clearTimeout(timeout);
   }, [currentText, isTyping, seqIndex]);
 
-  // We want to color "AI systems," differently if it matches the end of the string
-  // Let's implement a safe way to apply the gradient to specific words.
-  // Actually, since the text is dynamic, let's just render the string, 
-  // but if the string contains "AI systems,", we can split it.
-  
+  // Apply a restrained accent only to the AI phrase when it is present.
   const renderText = () => {
-    if (currentText.includes('AI systems')) {
-      const parts = currentText.split('AI systems');
+    if (currentText.includes('AI products')) {
+      const parts = currentText.split('AI products');
       return (
         <>
           {parts[0]}
-          <span className="hero-cinematic__heading-accent">AI systems</span>
+          <span className="hero-cinematic__heading-accent">AI products</span>
           {parts[1]}
         </>
       );
@@ -81,7 +77,7 @@ export default function HeroTypewriter() {
       <motion.span 
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
-        style={{ display: 'inline-block', width: '4px', background: 'currentColor', height: '1em', marginLeft: '4px', verticalAlign: 'text-bottom' }}
+        style={{ display: 'inline-block', width: '3px', background: 'currentColor', height: '0.9em', marginLeft: '6px', verticalAlign: 'text-bottom' }}
       />
     </motion.h1>
   );

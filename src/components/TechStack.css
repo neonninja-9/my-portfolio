@@ -202,3 +202,21 @@
     /* Nodes will be positioned statically by d3 without ambient drift */
   }
 }
+/* Designer polish */
+.techgraph-svg {
+  border-radius: 32px;
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.1), transparent 38%),
+    rgba(3, 3, 5, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 28px 90px rgba(0, 0, 0, 0.26);
+}
+
+.techgraph-chip {
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(14px);
+}
+
+.techgraph-chip--active {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.18);
+}
