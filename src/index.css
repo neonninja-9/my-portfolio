@@ -1,6 +1,23 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+/* ===== Geist Variable Fonts (served locally via geist npm package) ===== */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 240 10% 3.9%;
@@ -64,10 +81,11 @@
   --glow-purple: rgba(139, 92, 246, 0.15);
   --glow-blue: rgba(59, 130, 246, 0.15);
 
-  /* Typography */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* Typography — Geist */
+  --font-geist: 'Geist', sans-serif;
+  --font-heading: var(--font-geist);
+  --font-body: var(--font-geist);
+  --font-mono: 'Geist Mono', monospace;
 
   /* Spacing */
   --section-padding: 6rem 1.5rem;
@@ -136,7 +154,8 @@ html {
 body {
   background-color: var(--bg-deep);
   color: var(--text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-geist);
+  font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
   max-width: 100%;
@@ -167,9 +186,10 @@ button {
 
 /* ===== Typography ===== */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-geist);
   font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
 /* ===== Utility Classes ===== */

@@ -27,7 +27,7 @@
 }
 
 #terminal-text {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: clamp(14px, 2vw, 20px);
   line-height: 1.65;
   color: #E5E5E5;
@@ -70,7 +70,7 @@
   left: 0;
   right: 0;
   text-align: center;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 12px;
   color: #55555c;
   opacity: 0;

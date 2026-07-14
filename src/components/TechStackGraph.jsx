@@ -223,7 +223,7 @@ export default function TechStackGraph() {
       .attr('dy', (d) => PROFICIENCY_RADIUS[d.proficiency] + 16)
       .attr('fill', '#a1a1aa')
       .attr('font-size', '11px')
-      .attr('font-family', "'JetBrains Mono', monospace")
+      .attr('font-family', "'Geist Mono', monospace")
       .attr('pointer-events', 'none');
 
     // ── Drag behavior ──────────────────────────────────────

@@ -85,7 +85,7 @@ const TooltipCard = styled.div`
     border-radius: 20px;
     padding: 2px 10px;
     margin-bottom: 6px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono, 'Geist Mono', monospace);
   }
 
   .tooltip-desc {

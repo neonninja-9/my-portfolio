@@ -72,16 +72,15 @@ export default function HeroTypewriter() {
   return (
     <motion.h1 
       className="hero-cinematic__heading" 
-      style={{ display: 'inline-block', minHeight: '1.2em' }}
+      style={{ display: 'block', minHeight: '1.2em', whiteSpace: 'pre-wrap' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {renderText()}
-      <motion.span 
+      {renderText()}<motion.span 
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
-        style={{ display: 'inline-block', width: '4px', background: 'currentColor', height: '1em', marginLeft: '4px', verticalAlign: 'text-bottom' }}
+        style={{ display: 'inline-block', width: '4px', background: 'currentColor', height: '0.85em', marginLeft: '4px', verticalAlign: 'text-bottom' }}
       />
     </motion.h1>
   );

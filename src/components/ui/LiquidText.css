@@ -17,7 +17,7 @@
 }
 
 .liquid-text {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-geist);
   font-size: clamp(4rem, 10vw, 10rem);
   font-weight: 900;
   text-transform: uppercase;

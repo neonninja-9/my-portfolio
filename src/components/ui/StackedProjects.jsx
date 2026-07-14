@@ -284,7 +284,7 @@ const CardOuter = styled.div`
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono, 'Geist Mono', monospace);
   }
 
   .card-badge {
@@ -305,7 +305,7 @@ const CardOuter = styled.div`
     font-weight: 700;
     color: #f0f0f5;
     line-height: 1.2;
-    font-family: var(--font-heading, 'Outfit', sans-serif);
+    font-family: var(--font-geist);
   }
 
   .card-desc {
@@ -329,7 +329,7 @@ const CardOuter = styled.div`
     font-weight: 500;
     color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono, 'Geist Mono', monospace);
   }
 
   .card-links {
