@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Download, Sparkles } from "lucide-react";
 import HeroTerminal from "./ui/HeroTerminal";
 import HeroBackground from "./ui/HeroBackground";
 import HeroTypewriter from "./ui/HeroTypewriter";
@@ -88,6 +89,11 @@ export default function Hero() {
           animate="show"
         >
           <motion.div className="hero-cinematic__content">
+            <motion.div variants={itemVariants} className="hero-cinematic__eyebrow">
+              <Sparkles size={16} />
+              Available for impactful engineering projects
+            </motion.div>
+
             <HeroTypewriter />
 
             <motion.div
@@ -108,6 +114,11 @@ export default function Hero() {
               </AnimatePresence>
             </motion.div>
 
+            <motion.p variants={itemVariants} className="hero-cinematic__intro">
+              I design and ship reliable full-stack products with thoughtful interfaces,
+              scalable APIs, and the polish users expect from production software.
+            </motion.p>
+
             <motion.div
               variants={itemVariants}
               className="hero-cinematic__actions"
@@ -116,7 +127,7 @@ export default function Hero() {
                 className="hero-cinematic__btn hero-cinematic__btn--primary"
                 onClick={() => scrollTo("#projects")}
               >
-                Explore Projects
+                Explore Projects <ArrowRight size={18} />
               </button>
               <a
                 className="hero-cinematic__btn hero-cinematic__btn--secondary"
@@ -124,8 +135,14 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Download Resume
+                <Download size={18} /> Download Resume
               </a>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="hero-cinematic__proof">
+              <span><strong>10+</strong> shipped projects</span>
+              <span><strong>AI/ML</strong> focused CSE</span>
+              <span><strong>OSS</strong> contributor</span>
             </motion.div>
           </motion.div>
         </motion.div>
