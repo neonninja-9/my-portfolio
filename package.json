@@ -21,6 +21,7 @@
     "geist": "^1.7.2",
     "gsap": "^3.15.0",
     "lucide-react": "^1.23.0",
+    "ogl": "^1.0.11",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "styled-components": "^6.4.3",
