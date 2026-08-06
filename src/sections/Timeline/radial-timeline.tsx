@@ -200,8 +200,28 @@ export default function RadialTimeline() {
     };
   }, [updateNodePositions]);
 
+  // Dismiss tooltip when clicking / tapping anywhere outside a node
+  useEffect(() => {
+    const handleOutsideClick = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest?.('[data-node-wrapper]')) {
+        setActiveId(null);
+      }
+    };
+
+    window.addEventListener('pointerdown', handleOutsideClick);
+    return () => {
+      window.removeEventListener('pointerdown', handleOutsideClick);
+    };
+  }, []);
+
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (!containerRef.current) return;
+    const target = e.target as HTMLElement | null;
+    if (!target?.closest?.('[data-node-wrapper]')) {
+      setActiveId(null);
+    }
+
     const rect = containerRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -335,6 +355,7 @@ export default function RadialTimeline() {
                 }}
               >
                 <NodeWrapper
+                  data-node-wrapper="true"
                   className={isActive ? 'is-active' : ''}
                   onClick={(e) => handleNodeClick(entry.id, e)}
                   onMouseEnter={() => !isMobile && setActiveId(entry.id)}
