@@ -83,6 +83,10 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+  .timeline__heading {
+    margin-bottom: 1.5rem;
+  }
+
   .timeline {
     padding-left: 2rem;
   }
