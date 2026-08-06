@@ -38,6 +38,7 @@ const itemVariants = {
 export default function Hero() {
   const [showTerminal, setShowTerminal] = useState(true);
   const [roleIndex, setRoleIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Respect reduced motion or if they've seen it this session
@@ -49,6 +50,10 @@ export default function Hero() {
     if (prefersReducedMotion || hasSeenBoot) {
       setShowTerminal(false);
     }
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -143,7 +148,7 @@ export default function Hero() {
                 speed={0.35}
                 followMouse
                 proximity={250}
-                autoAnimate={false}
+                autoAnimate={isMobile}
                 onClick={() => scrollTo("#projects")}
               >
                 Explore Projects
@@ -166,7 +171,7 @@ export default function Hero() {
                 speed={0.35}
                 followMouse
                 proximity={250}
-                autoAnimate={false}
+                autoAnimate={isMobile}
               >
                 Download Resume
               </SpecularButton>
