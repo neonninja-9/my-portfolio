@@ -90,7 +90,7 @@ const StyledWrapper = styled.div`
   position: fixed;
   left: clamp(0.85rem, 2vw, 1.5rem);
   bottom: clamp(0.85rem, 2vw, 1.5rem);
-  z-index: 80;
+  z-index: 40;
 
   a {
     text-decoration: none;

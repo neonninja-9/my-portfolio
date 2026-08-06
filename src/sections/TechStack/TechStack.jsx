@@ -48,23 +48,23 @@ export default function TechStack() {
       <p className="techstack__desc">
         The tools and technologies I work with every day.
       </p>
-      <div style={{ height: isMobile ? 300 : 600, width: '100%', maxWidth: 1200, margin: '0 auto', overflow: 'hidden' }}>
+      <div style={{ height: isMobile ? 320 : 600, width: '100%', maxWidth: 1200, margin: '0 auto', overflow: 'hidden' }}>
         <DriftWall
           items={skillItems}
           columns={isMobile ? 3 : 5}
-          tileWidth={isMobile ? 90 : 180}
-          tileHeight={isMobile ? 60 : 120}
-          gap={isMobile ? 8 : 16}
-          tilt={14}
-          turn={-12}
-          perspective={1200}
-          depth={100}
-          speed={isMobile ? 20 : 36}
+          tileWidth={isMobile ? 95 : 180}
+          tileHeight={isMobile ? 65 : 120}
+          gap={isMobile ? 10 : 16}
+          tilt={isMobile ? 6 : 14}
+          turn={isMobile ? 0 : -12}
+          perspective={isMobile ? 1000 : 1200}
+          depth={isMobile ? 20 : 100}
+          speed={isMobile ? 18 : 36}
           direction="up"
           variance={0.4}
-          parallax={0.5}
-          lift={56}
-          fade={isMobile ? 0.3 : 0.55}
+          parallax={isMobile ? 0.2 : 0.5}
+          lift={isMobile ? 30 : 56}
+          fade={isMobile ? 0.2 : 0.55}
           dim={0.5}
           grayscale={true}
           overlayColor="#060010"

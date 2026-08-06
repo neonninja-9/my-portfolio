@@ -29,25 +29,65 @@ const scrollToSection = (href: string) => {
 
 const MENU_SLIDE_ANIMATION = {
 	initial: { x: "calc(100% + 100px)" },
-	enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const } },
+	enter: { 
+		x: "0", 
+		transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const } 
+	},
 	exit: {
 		x: "calc(100% + 100px)",
 		transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
 	},
 };
 
+const ITEM_SLIDE_ANIMATION = {
+	initial: { x: 80, opacity: 0 },
+	enter: (i: number) => ({
+		x: 0,
+		opacity: 1,
+		transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const, delay: 0.05 * i },
+	}),
+	exit: (i: number) => ({
+		x: 80,
+		opacity: 0,
+		transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] as const, delay: 0.03 * i },
+	}),
+};
+
 const CustomFooter: React.FC = () => {
 	return (
-		<div className="flex w-full text-xs justify-between text-white/70 px-10 md:px-14 pb-8 uppercase tracking-widest font-medium">
-			<a href={contactInfo.email ? `mailto:${contactInfo.email}` : "#"} className="hover:text-white transition-colors">
-				Email
+		<div className="curved-drawer__footer">
+			<a 
+				href={contactInfo.email ? `mailto:${contactInfo.email}` : "#"} 
+				className="curved-drawer__social-btn" 
+				aria-label="Email"
+				title="Email"
+			>
+				<Mail size={18} />
 			</a>
-			<div className="flex gap-6">
-				<a href="https://github.com/neonninja-9" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-					GitHub
+			<div className="flex gap-3">
+				<a 
+					href="https://github.com/neonninja-9" 
+					target="_blank" 
+					rel="noopener noreferrer" 
+					className="curved-drawer__social-btn"
+					aria-label="GitHub"
+					title="GitHub"
+				>
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+					</svg>
 				</a>
-				<a href="https://www.linkedin.com/in/gourav-sharma-450298329" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-					LinkedIn
+				<a 
+					href="https://www.linkedin.com/in/gourav-sharma-450298329" 
+					target="_blank" 
+					rel="noopener noreferrer" 
+					className="curved-drawer__social-btn"
+					aria-label="LinkedIn"
+					title="LinkedIn"
+				>
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+					</svg>
 				</a>
 			</div>
 		</div>
@@ -90,45 +130,47 @@ const NavLink: React.FC<iNavLinkProps> = ({
 
 	return (
 		<motion.div
+			custom={index}
+			variants={ITEM_SLIDE_ANIMATION}
 			initial="initial"
+			animate="enter"
+			exit="exit"
 			whileHover="whileHover"
-			className="group relative flex items-center justify-between border-b border-white/5 py-5 transition-colors duration-500 uppercase"
+			className="curved-drawer__item"
 		>
-			<a ref={ref} onMouseMove={handleMouseMove} href={href} onClick={handleClick} className="w-full">
-				<div className="relative flex items-start">
-					<span className="text-white/30 group-hover:text-white/60 transition-colors duration-500 text-2xl md:text-3xl font-thin mr-4 mt-1">
-						0{index}.
-					</span>
-					<div className="flex flex-row gap-2">
-						<motion.span
-							variants={{
-								initial: { x: 0 },
-								whileHover: { x: -12 },
-							}}
-							transition={{
-								type: "spring",
-								staggerChildren: 0.05,
-								delayChildren: 0.1,
-							}}
-							className="relative z-10 block text-4xl md:text-5xl font-extralight text-white/90 group-hover:text-white transition-colors duration-500"
-						>
-							{heading.split("").map((letter, i) => {
-								return (
-									<motion.span
-										key={i}
-										variants={{
-											initial: { x: 0 },
-											whileHover: { x: 12 },
-										}}
-										transition={{ type: "spring" }}
-										className="inline-block"
-									>
-										{letter === " " ? "\u00A0" : letter}
-									</motion.span>
-								);
-							})}
-						</motion.span>
-					</div>
+			<a ref={ref} onMouseMove={handleMouseMove} href={href} onClick={handleClick} className="curved-drawer__link">
+				<span className="curved-drawer__num">
+					0{index}.
+				</span>
+				<div className="flex flex-row gap-1">
+					<motion.span
+						variants={{
+							initial: { x: 0 },
+							whileHover: { x: -8 },
+						}}
+						transition={{
+							type: "spring",
+							staggerChildren: 0.04,
+							delayChildren: 0.08,
+						}}
+						className="curved-drawer__label"
+					>
+						{heading.split("").map((letter, i) => {
+							return (
+								<motion.span
+									key={i}
+									variants={{
+										initial: { x: 0 },
+										whileHover: { x: 8 },
+									}}
+									transition={{ type: "spring" }}
+									className="inline-block"
+								>
+									{letter === " " ? "\u00A0" : letter}
+								</motion.span>
+							);
+						})}
+					</motion.span>
 				</div>
 			</a>
 		</motion.div>
@@ -136,14 +178,24 @@ const NavLink: React.FC<iNavLinkProps> = ({
 };
 
 const Curve: React.FC = () => {
-	const initialPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${window.innerHeight} Q-100 ${window.innerHeight / 2} 100 0`;
-	const targetPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${window.innerHeight} Q100 ${window.innerHeight / 2} 100 0`;
+	const [windowHeight, setWindowHeight] = React.useState<number>(0);
 
-	const curve = {
+	React.useEffect(() => {
+		setWindowHeight(window.innerHeight);
+		const handleResize = () => setWindowHeight(window.innerHeight);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	const h = windowHeight || (typeof window !== "undefined" ? window.innerHeight : 800);
+	const initialPath = `M100 0 L200 0 L200 ${h} L100 ${h} Q-100 ${h / 2} 100 0`;
+	const targetPath = `M100 0 L200 0 L200 ${h} L100 ${h} Q100 ${h / 2} 100 0`;
+
+	const curveVariants = {
 		initial: { d: initialPath },
 		enter: {
 			d: targetPath,
-			transition: { duration: 1, ease: [0.76, 0, 0.24, 1] as const },
+			transition: { duration: 1.0, ease: [0.76, 0, 0.24, 1] as const },
 		},
 		exit: {
 			d: initialPath,
@@ -153,11 +205,11 @@ const Curve: React.FC = () => {
 
 	return (
 		<svg
-			className="absolute top-0 -left-[99px] w-[100px] stroke-none h-full"
+			className="absolute top-0 -left-[99px] w-[100px] h-full stroke-none pointer-events-none"
 			style={{ fill: "#0c0c0e" }}
 		>
 			<motion.path
-				variants={curve}
+				variants={curveVariants}
 				initial="initial"
 				animate="enter"
 				exit="exit"
@@ -180,44 +232,50 @@ const CurvedNavbar: React.FC<iCurvedNavbarProps> = ({ setIsActive, navItems, han
 			initial="initial"
 			animate="enter"
 			exit="exit"
-			className="h-[100dvh] w-screen max-w-[420px] fixed right-0 top-0 z-[60] bg-[#0c0c0e] shadow-2xl"
+			className="curved-drawer"
 		>
-			<div className="h-full pt-12 pb-6 flex flex-col justify-between overflow-y-auto">
-				<div className="flex flex-col mt-0 px-10 md:px-14">
-					<div className="flex items-center justify-between text-white/50 border-b border-white/10 uppercase text-xs tracking-widest pb-6 mb-6">
-						<p className="font-medium">Navigation</p>
-						<button 
-							onClick={() => setIsActive(false)}
-							className="p-2 -mr-2 rounded-full hover:bg-white/10 hover:text-white transition-all bg-white/5"
-							aria-label="Close menu"
-						>
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-								<line x1="18" y1="6" x2="6" y2="18"></line>
-								<line x1="6" y1="6" x2="18" y2="18"></line>
-							</svg>
-						</button>
-					</div>
-					<section className="bg-transparent mt-0">
-						<div className="mx-auto w-full flex flex-col">
-							{navItems.map((item, index) => {
-								return (
-									<NavLink
-										key={item.href}
-										heading={item.label}
-										href={item.href}
-										setIsActive={setIsActive}
-										index={index + 1}
-										handleNavClick={handleNavClick}
-									/>
-								);
-							})}
-						</div>
-					</section>
-				</div>
-				<div className="mt-12">
-					{footer || <CustomFooter />}
-				</div>
+			{/* Header / Close Area */}
+			<div className="curved-drawer__header">
+				<span className="curved-drawer__title">
+					Navigation
+				</span>
+				<button 
+					onClick={() => setIsActive(false)}
+					className="curved-drawer__close"
+					aria-label="Close menu"
+				>
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
 			</div>
+
+			{/* Nav Links Area */}
+			<div className="curved-drawer__body">
+				<section className="bg-transparent">
+					<div className="mx-auto w-full flex flex-col">
+						{navItems.map((item, index) => {
+							return (
+								<NavLink
+									key={item.href}
+									heading={item.label}
+									href={item.href}
+									setIsActive={setIsActive}
+									index={index + 1}
+									handleNavClick={handleNavClick}
+								/>
+							);
+						})}
+					</div>
+				</section>
+			</div>
+
+			{/* Footer Area */}
+			<div>
+				{footer || <CustomFooter />}
+			</div>
+
 			<Curve />
 		</motion.div>
 	);
