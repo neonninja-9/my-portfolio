@@ -72,7 +72,7 @@ export default function HeroTypewriter() {
   return (
     <motion.h1 
       className="hero-cinematic__heading" 
-      style={{ display: 'block', minHeight: '1.2em', whiteSpace: 'pre-wrap' }}
+      style={{ display: 'block', minHeight: '2.1em', whiteSpace: 'pre-wrap' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Header } from '@/components/layout/Header';
 import Hero from '@/sections/Hero/Hero';
 import About from '@/sections/About/About';
@@ -19,6 +22,35 @@ export default function App() {
     const handler = (e) => setMatrixActive(e.detail.active);
     window.addEventListener('particle-toggle', handler);
     return () => window.removeEventListener('particle-toggle', handler);
+  }, []);
+
+  // Initialize Lenis for ultra-smooth scrolling
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    };
   }, []);
   useEffect(() => {
     let isTicking = false;

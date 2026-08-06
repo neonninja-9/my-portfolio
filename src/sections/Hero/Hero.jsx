@@ -4,6 +4,7 @@ import HeroTerminal from "./HeroTerminal";
 import Scanner from "@/components/ui/Scanner";
 import HeroTypewriter from "./HeroTypewriter";
 import '@/sections/Hero/Hero.css';
+import SpecularButton from "@/components/ui/spacularButton";
 
 const ROLES = [
   "Computer Science Engineer",
@@ -69,7 +70,14 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero-cinematic">
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundColor: '#050505' }}>
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 0,
+        backgroundColor: '#050505',
+        maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
+      }}>
         <Scanner />
       </div>
 
@@ -90,7 +98,9 @@ export default function Hero() {
           animate="show"
         >
           <motion.div className="hero-cinematic__content">
-            <HeroTypewriter />
+            <motion.div>
+              <HeroTypewriter />
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
@@ -114,19 +124,52 @@ export default function Hero() {
               variants={itemVariants}
               className="hero-cinematic__actions"
             >
-              <button
-                className="hero-cinematic__btn hero-cinematic__btn--primary"
+
+
+              <SpecularButton
+                className="hero-cinematic__btn"
+                size="lg"
+                radius={20}
+                tint="#ffffff"
+                tintOpacity={0}
+                blur={0}
+                textColor="#f5f5f5"
+                lineColor="#ffffff"
+                baseColor="#525252"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={false}
                 onClick={() => scrollTo("#projects")}
               >
                 Explore Projects
-              </button>
-              <a
+              </SpecularButton>
+              <a className='cursor-pointer' href={RESUME_URL} rel="noopener noreferrer" target="_blank">
+              <SpecularButton
                 className="hero-cinematic__btn hero-cinematic__btn--secondary"
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                size="lg"
+                radius={20}
+                tint="#ffffff"
+                tintOpacity={0}
+                blur={0}
+                textColor="#f5f5f5"
+                lineColor="#ffffff"
+                baseColor="#525252"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={false}
               >
                 Download Resume
+              </SpecularButton>
               </a>
             </motion.div>
           </motion.div>
