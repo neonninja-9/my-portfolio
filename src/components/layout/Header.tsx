@@ -38,7 +38,7 @@ const MENU_SLIDE_ANIMATION = {
 
 const CustomFooter: React.FC = () => {
 	return (
-		<div className="flex w-full text-xs justify-between text-white/70 px-10 pb-10 uppercase tracking-widest font-medium">
+		<div className="flex w-full text-xs justify-between text-white/70 px-10 md:px-14 pb-8 uppercase tracking-widest font-medium">
 			<a href={contactInfo.email ? `mailto:${contactInfo.email}` : "#"} className="hover:text-white transition-colors">
 				Email
 			</a>
@@ -92,25 +92,25 @@ const NavLink: React.FC<iNavLinkProps> = ({
 		<motion.div
 			initial="initial"
 			whileHover="whileHover"
-			className="group relative flex items-center justify-between border-b border-white/10 py-4 transition-colors duration-500 uppercase"
+			className="group relative flex items-center justify-between border-b border-white/5 py-5 transition-colors duration-500 uppercase"
 		>
 			<a ref={ref} onMouseMove={handleMouseMove} href={href} onClick={handleClick} className="w-full">
 				<div className="relative flex items-start">
-					<span className="text-white/50 transition-colors duration-500 text-2xl md:text-4xl font-thin mr-2">
-						{index}.
+					<span className="text-white/30 group-hover:text-white/60 transition-colors duration-500 text-2xl md:text-3xl font-thin mr-4 mt-1">
+						0{index}.
 					</span>
 					<div className="flex flex-row gap-2">
 						<motion.span
 							variants={{
 								initial: { x: 0 },
-								whileHover: { x: -16 },
+								whileHover: { x: -12 },
 							}}
 							transition={{
 								type: "spring",
-								staggerChildren: 0.075,
-								delayChildren: 0.25,
+								staggerChildren: 0.05,
+								delayChildren: 0.1,
 							}}
-							className="relative z-10 block text-3xl md:text-4xl font-extralight text-white transition-colors duration-500"
+							className="relative z-10 block text-4xl md:text-5xl font-extralight text-white/90 group-hover:text-white transition-colors duration-500"
 						>
 							{heading.split("").map((letter, i) => {
 								return (
@@ -118,7 +118,7 @@ const NavLink: React.FC<iNavLinkProps> = ({
 										key={i}
 										variants={{
 											initial: { x: 0 },
-											whileHover: { x: 16 },
+											whileHover: { x: 12 },
 										}}
 										transition={{ type: "spring" }}
 										className="inline-block"
@@ -180,15 +180,25 @@ const CurvedNavbar: React.FC<iCurvedNavbarProps> = ({ setIsActive, navItems, han
 			initial="initial"
 			animate="enter"
 			exit="exit"
-			className="h-[100dvh] w-screen max-w-[400px] fixed right-0 top-0 z-[60] bg-[#0c0c0e]"
+			className="h-[100dvh] w-screen max-w-[420px] fixed right-0 top-0 z-[60] bg-[#0c0c0e] shadow-2xl"
 		>
-			<div className="h-full pt-20 flex flex-col justify-between">
-				<div className="flex flex-col gap-3 mt-0 px-10">
-					<div className="text-white/50 border-b border-white/10 uppercase text-xs tracking-widest mb-4 pb-2">
-						<p>Navigation</p>
+			<div className="h-full pt-12 pb-6 flex flex-col justify-between overflow-y-auto">
+				<div className="flex flex-col mt-0 px-10 md:px-14">
+					<div className="flex items-center justify-between text-white/50 border-b border-white/10 uppercase text-xs tracking-widest pb-6 mb-6">
+						<p className="font-medium">Navigation</p>
+						<button 
+							onClick={() => setIsActive(false)}
+							className="p-2 -mr-2 rounded-full hover:bg-white/10 hover:text-white transition-all bg-white/5"
+							aria-label="Close menu"
+						>
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+								<line x1="18" y1="6" x2="6" y2="18"></line>
+								<line x1="6" y1="6" x2="18" y2="18"></line>
+							</svg>
+						</button>
 					</div>
 					<section className="bg-transparent mt-0">
-						<div className="mx-auto w-full">
+						<div className="mx-auto w-full flex flex-col">
 							{navItems.map((item, index) => {
 								return (
 									<NavLink
@@ -204,7 +214,9 @@ const CurvedNavbar: React.FC<iCurvedNavbarProps> = ({ setIsActive, navItems, han
 						</div>
 					</section>
 				</div>
-				{footer || <CustomFooter />}
+				<div className="mt-12">
+					{footer || <CustomFooter />}
+				</div>
 			</div>
 			<Curve />
 		</motion.div>
@@ -284,7 +296,15 @@ export function Header() {
 								Let's Talk
 							</Button>
 						</div>
-						<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="site-header__menu-button relative z-[70]">
+						<Button 
+							size="icon" 
+							variant="outline" 
+							onClick={() => setOpen(!open)} 
+							className={cn(
+								"site-header__menu-button relative z-[70] transition-opacity duration-300",
+								open && "opacity-0 pointer-events-none"
+							)}
+						>
 							<MenuToggleIcon open={open} className="size-5" duration={300} />
 						</Button>
 					</nav>
