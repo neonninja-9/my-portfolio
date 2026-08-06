@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { socialLinks, contactInfo } from '../../data/socialLinks';
+import { socialLinks, contactInfo } from '@/data/socialLinks';
 
 const socialItems = [
   {

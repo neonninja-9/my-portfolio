@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Header } from './components/ui/header-2';
-import Hero from './components/Hero';
-import About from './components/About';
-import TechStack from './components/TechStack';
-import Projects from './components/Projects';
-import Timeline from './components/Timeline';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import SocialCard from './components/SocialCard';
+import { Header } from '@/components/layout/Header';
+import Hero from '@/sections/Hero/Hero';
+import About from '@/sections/About/About';
+import TechStack from '@/sections/TechStack/TechStack';
+import Projects from '@/sections/Projects/Projects';
+import Timeline from '@/sections/Timeline/Timeline';
+import Contact from '@/sections/Contact/Contact';
+import Footer from '@/components/layout/Footer';
+import SocialCard from '@/components/shared/SocialCard';
 import InfiniteGrid from './components/ui/InfiniteGrid';
-import MatrixRain from './components/ParticleCanvas';
+import MatrixRain from '@/components/ui/ParticleCanvas';
 
 export default function App() {
   const [matrixActive, setMatrixActive] = useState(false);
