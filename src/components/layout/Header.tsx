@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Mail } from 'lucide-react';
+import { motion, useMotionValue, AnimatePresence, Variants } from 'framer-motion';
 import { Button, buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/MenuToggleIcon';
@@ -26,6 +27,190 @@ const scrollToSection = (href: string) => {
 	window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
 };
 
+const MENU_SLIDE_ANIMATION = {
+	initial: { x: "calc(100% + 100px)" },
+	enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const } },
+	exit: {
+		x: "calc(100% + 100px)",
+		transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
+	},
+};
+
+const CustomFooter: React.FC = () => {
+	return (
+		<div className="flex w-full text-xs justify-between text-white/70 px-10 pb-10 uppercase tracking-widest font-medium">
+			<a href={contactInfo.email ? `mailto:${contactInfo.email}` : "#"} className="hover:text-white transition-colors">
+				Email
+			</a>
+			<div className="flex gap-6">
+				<a href="https://github.com/neonninja-9" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+					GitHub
+				</a>
+				<a href="https://www.linkedin.com/in/gourav-sharma-450298329" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+					LinkedIn
+				</a>
+			</div>
+		</div>
+	);
+};
+
+interface iNavLinkProps {
+	heading: string;
+	href: string;
+	setIsActive: (isActive: boolean) => void;
+	index: number;
+	handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+}
+
+const NavLink: React.FC<iNavLinkProps> = ({
+	heading,
+	href,
+	setIsActive,
+	index,
+	handleNavClick
+}) => {
+	const ref = React.useRef<HTMLAnchorElement | null>(null);
+	const x = useMotionValue(0);
+	const y = useMotionValue(0);
+
+	const handleMouseMove = (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+	) => {
+		if (!ref.current) return;
+		const rect = ref.current.getBoundingClientRect();
+		const mouseX = e.clientX - rect.left;
+		const mouseY = e.clientY - rect.top;
+		x.set(mouseX / rect.width - 0.5);
+		y.set(mouseY / rect.height - 0.5);
+	};
+
+	const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		handleNavClick(e, href);
+	};
+
+	return (
+		<motion.div
+			initial="initial"
+			whileHover="whileHover"
+			className="group relative flex items-center justify-between border-b border-white/10 py-4 transition-colors duration-500 uppercase"
+		>
+			<a ref={ref} onMouseMove={handleMouseMove} href={href} onClick={handleClick} className="w-full">
+				<div className="relative flex items-start">
+					<span className="text-white/50 transition-colors duration-500 text-2xl md:text-4xl font-thin mr-2">
+						{index}.
+					</span>
+					<div className="flex flex-row gap-2">
+						<motion.span
+							variants={{
+								initial: { x: 0 },
+								whileHover: { x: -16 },
+							}}
+							transition={{
+								type: "spring",
+								staggerChildren: 0.075,
+								delayChildren: 0.25,
+							}}
+							className="relative z-10 block text-3xl md:text-4xl font-extralight text-white transition-colors duration-500"
+						>
+							{heading.split("").map((letter, i) => {
+								return (
+									<motion.span
+										key={i}
+										variants={{
+											initial: { x: 0 },
+											whileHover: { x: 16 },
+										}}
+										transition={{ type: "spring" }}
+										className="inline-block"
+									>
+										{letter === " " ? "\u00A0" : letter}
+									</motion.span>
+								);
+							})}
+						</motion.span>
+					</div>
+				</div>
+			</a>
+		</motion.div>
+	);
+};
+
+const Curve: React.FC = () => {
+	const initialPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${window.innerHeight} Q-100 ${window.innerHeight / 2} 100 0`;
+	const targetPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${window.innerHeight} Q100 ${window.innerHeight / 2} 100 0`;
+
+	const curve = {
+		initial: { d: initialPath },
+		enter: {
+			d: targetPath,
+			transition: { duration: 1, ease: [0.76, 0, 0.24, 1] as const },
+		},
+		exit: {
+			d: initialPath,
+			transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] as const },
+		},
+	};
+
+	return (
+		<svg
+			className="absolute top-0 -left-[99px] w-[100px] stroke-none h-full"
+			style={{ fill: "#0c0c0e" }}
+		>
+			<motion.path
+				variants={curve}
+				initial="initial"
+				animate="enter"
+				exit="exit"
+			/>
+		</svg>
+	);
+};
+
+interface iCurvedNavbarProps {
+	setIsActive: (isActive: boolean) => void;
+	navItems: typeof links;
+	handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+	footer?: React.ReactNode;
+}
+
+const CurvedNavbar: React.FC<iCurvedNavbarProps> = ({ setIsActive, navItems, handleNavClick, footer }) => {
+	return (
+		<motion.div
+			variants={MENU_SLIDE_ANIMATION}
+			initial="initial"
+			animate="enter"
+			exit="exit"
+			className="h-[100dvh] w-screen max-w-[400px] fixed right-0 top-0 z-[60] bg-[#0c0c0e]"
+		>
+			<div className="h-full pt-20 flex flex-col justify-between">
+				<div className="flex flex-col gap-3 mt-0 px-10">
+					<div className="text-white/50 border-b border-white/10 uppercase text-xs tracking-widest mb-4 pb-2">
+						<p>Navigation</p>
+					</div>
+					<section className="bg-transparent mt-0">
+						<div className="mx-auto w-full">
+							{navItems.map((item, index) => {
+								return (
+									<NavLink
+										key={item.href}
+										heading={item.label}
+										href={item.href}
+										setIsActive={setIsActive}
+										index={index + 1}
+										handleNavClick={handleNavClick}
+									/>
+								);
+							})}
+						</div>
+					</section>
+				</div>
+				{footer || <CustomFooter />}
+			</div>
+			<Curve />
+		</motion.div>
+	);
+};
+
 export function Header() {
 	const [open, setOpen] = React.useState(false);
 	const scrolled = useScroll(10);
@@ -49,115 +234,83 @@ export function Header() {
 	}, [open]);
 
 	return (
-		<header className="site-header">
-			<div
-				className={cn(
-					'site-header__bar',
-					{
-						'site-header__bar--scrolled': scrolled && !open,
-						'site-header__bar--open': open,
-					},
-				)}
-			>
-				<nav className="site-header__nav">
-					<a href="#hero" className="site-header__logo-link flex items-center" onClick={(e) => handleNavClick(e, '#hero')}>
-						<span className="text-xl font-bold tracking-tight text-white">gourav.dev</span>
-					</a>
-
-					<div className="site-header__links">
-						{links.map((link) => (
-							<a
-								key={link.href}
-								className="site-header__link"
-								href={link.href}
-								onClick={(e) => handleNavClick(e, link.href)}
-							>
-								{link.label}
-							</a>
-						))}
-					</div>
-
-					<div className="site-header__actions">
-						<ThemeSwitch />
-						<Button
-							variant="outline"
-							size="sm"
-							className="site-header__button border-white/10 transition-colors hover:bg-white/5"
-							asChild
-						>
-							<a href={`mailto:${contactInfo.email}`} aria-label="Send email">
-								<Mail className="size-4 shrink-0" />
-								Email
-							</a>
-						</Button>
-						<Button
-							size="sm"
-							className="site-header__button site-header__cta hover:text-white"
-							onClick={() => scrollToSection('#contact')}
-						>
-							Let's Talk
-						</Button>
-					</div>
-					<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="site-header__menu-button">
-						<MenuToggleIcon open={open} className="size-5" duration={300} />
-					</Button>
-				</nav>
-			</div>
-
-			<div
-				className={cn(
-					'site-header__mobile-menu bg-background/90 fixed right-0 bottom-0 left-0 z-50 flex-col overflow-hidden border-y',
-					{
-						'site-header__mobile-menu--open': open,
-					},
-				)}
-			>
+		<>
+			<header className="site-header">
 				<div
-					data-slot={open ? 'open' : 'closed'}
 					className={cn(
-						'data-[slot=open]:animate-in data-[slot=open]:zoom-in-95 data-[slot=closed]:animate-out data-[slot=closed]:zoom-out-95 ease-out',
-						'flex h-full w-full flex-col justify-between gap-y-2 p-4',
+						'site-header__bar',
+						{
+							'site-header__bar--scrolled': scrolled && !open,
+							'site-header__bar--open': open,
+						},
 					)}
 				>
-					<div className="grid gap-y-2">
-						{links.map((link) => (
-							<a
-								key={link.label}
-								className={buttonVariants({
-									variant: 'ghost',
-									className: 'justify-start',
-								})}
-								href={link.href}
-								onClick={(e) => handleNavClick(e, link.href)}
-							>
-								{link.label}
-							</a>
-						))}
-					</div>
-					<div className="flex flex-col gap-2">
-						<div className="flex items-center justify-between px-3 py-2">
-							<span className="text-sm text-muted-foreground">Theme</span>
-							<ThemeSwitch />
+					<nav className="site-header__nav">
+						<a href="#hero" className="site-header__logo-link flex items-center" onClick={(e) => handleNavClick(e, '#hero')}>
+							<span className="text-xl font-bold tracking-tight text-white">gourav.dev</span>
+						</a>
+
+						<div className="site-header__links">
+							{links.map((link) => (
+								<a
+									key={link.href}
+									className="site-header__link"
+									href={link.href}
+									onClick={(e) => handleNavClick(e, link.href)}
+								>
+									{link.label}
+								</a>
+							))}
 						</div>
-						<Button variant="outline" className="w-full" asChild>
-							<a href={`mailto:${contactInfo.email}`}>
-								<Mail className="size-4" />
-								Email Me
-							</a>
+
+						<div className="site-header__actions">
+							<ThemeSwitch />
+							<Button
+								variant="outline"
+								size="sm"
+								className="site-header__button border-white/10 transition-colors hover:bg-white/5"
+								asChild
+							>
+								<a href={`mailto:${contactInfo.email}`} aria-label="Send email">
+									<Mail className="size-4 shrink-0" />
+									Email
+								</a>
+							</Button>
+							<Button
+								size="sm"
+								className="site-header__button site-header__cta hover:text-white"
+								onClick={() => scrollToSection('#contact')}
+							>
+								Let's Talk
+							</Button>
+						</div>
+						<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="site-header__menu-button relative z-[70]">
+							<MenuToggleIcon open={open} className="size-5" duration={300} />
 						</Button>
-						<Button
-							className="site-header__cta w-full"
-							onClick={() => {
-								setOpen(false);
-								scrollToSection('#contact');
-							}}
-						>
-							Let's Talk
-						</Button>
-					</div>
+					</nav>
 				</div>
-			</div>
-		</header>
+			</header>
+
+			<AnimatePresence mode="wait">
+				{open && (
+					<>
+						<motion.div 
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.5 }}
+							className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55]"
+							onClick={() => setOpen(false)}
+						/>
+						<CurvedNavbar
+							setIsActive={setOpen}
+							navItems={links}
+							handleNavClick={handleNavClick}
+						/>
+					</>
+				)}
+			</AnimatePresence>
+		</>
 	);
 }
 

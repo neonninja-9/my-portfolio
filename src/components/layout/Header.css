@@ -40,7 +40,9 @@
 }
 
 .site-header__bar--open {
-  background: hsl(var(--background) / 0.9);
+  background: rgba(10, 10, 15, 0.95);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem 1rem 0 0;
 }
 
 .site-header__nav {
@@ -169,17 +171,30 @@
   top: 4rem;
 }
 
+/* ============================================
+   MOBILE — ≤ 900px
+   ============================================ */
 @media (max-width: 900px) {
+  .site-header {
+    padding-top: 0.5rem;
+    padding-inline: 0.5rem;
+  }
+
   .site-header__bar,
   .site-header__bar--scrolled {
-    width: min(calc(100vw - 1.5rem), 100%);
+    width: 100%;
     margin-top: 0;
-    border-radius: 0;
+    border-radius: 0.75rem;
+  }
+
+  .site-header__bar--open {
+    border-radius: 0.75rem 0.75rem 0 0;
   }
 
   .site-header__nav {
     display: flex;
-    height: 4rem;
+    height: 3.5rem;
+    padding-inline: 1rem;
   }
 
   .site-header__links,
@@ -189,9 +204,55 @@
 
   .site-header__menu-button {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ===== Mobile Menu Overlay ===== */
+  .site-header__mobile-menu--open {
+    display: flex;
+    position: fixed;
+    top: calc(3.5rem + 0.5rem); /* nav height + top padding */
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0;
+    z-index: 49;
+    background: rgba(10, 10, 15, 0.96);
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: none;
+    border-radius: 0 0 0.75rem 0.75rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+}
+
+/* ============================================
+   SMALL MOBILE — ≤ 480px
+   ============================================ */
+@media (max-width: 480px) {
+  .site-header {
+    padding-top: 0.35rem;
+    padding-inline: 0.35rem;
+  }
+
+  .site-header__nav {
+    height: 3rem;
+    padding-inline: 0.75rem;
   }
 
   .site-header__mobile-menu--open {
-    display: flex;
+    top: calc(3rem + 0.35rem);
+    left: 0.35rem;
+    right: 0.35rem;
   }
 }

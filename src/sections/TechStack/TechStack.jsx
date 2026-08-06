@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import DriftWall from '@/components/ui/DriftWall';
 import '@/sections/TechStack/TechStack.css';
 
@@ -30,6 +31,15 @@ const skillItems = [
 ];
 
 export default function TechStack() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="tech-stack" className="techstack section-container">
       <h2 className="techstack__heading">
@@ -38,23 +48,23 @@ export default function TechStack() {
       <p className="techstack__desc">
         The tools and technologies I work with every day.
       </p>
-      <div style={{ height: 600, width: '100%', maxWidth: 1200, margin: '0 auto' }}>
+      <div style={{ height: isMobile ? 300 : 600, width: '100%', maxWidth: 1200, margin: '0 auto', overflow: 'hidden' }}>
         <DriftWall
           items={skillItems}
-          columns={5}
-          tileWidth={180}
-          tileHeight={120}
-          gap={16}
+          columns={isMobile ? 3 : 5}
+          tileWidth={isMobile ? 90 : 180}
+          tileHeight={isMobile ? 60 : 120}
+          gap={isMobile ? 8 : 16}
           tilt={14}
           turn={-12}
           perspective={1200}
           depth={100}
-          speed={36}
+          speed={isMobile ? 20 : 36}
           direction="up"
           variance={0.4}
           parallax={0.5}
           lift={56}
-          fade={0.55}
+          fade={isMobile ? 0.3 : 0.55}
           dim={0.5}
           grayscale={true}
           overlayColor="#060010"

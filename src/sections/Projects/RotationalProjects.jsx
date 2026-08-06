@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExternalLink, GitFork, Clock } from 'lucide-react';
@@ -26,7 +26,7 @@ export default function RotationalProjects({ projects }) {
   const TOTAL = projects.length;
   const SPACING = (2 * Math.PI) / TOTAL;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     const trigger = ScrollTrigger.create({
       trigger: containerRef.current,
