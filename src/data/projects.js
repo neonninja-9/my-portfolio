@@ -51,7 +51,7 @@ export const projects = [
     techStack: ["React.js", "Express.js", "Supabase", "REST API Development"],
     image: "/previews/amisos.png",
     githubUrl: "https://github.com/neonninja-9/amisos.git",
-    liveUrl: "https://amisosamity.vercel.app/login",
+    liveUrl: "https://amisos-frontend-tau.vercel.app/",
     featured: true,
     comingSoon: false,
   },
