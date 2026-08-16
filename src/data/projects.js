@@ -23,7 +23,7 @@ export const projects = [
     techStack: ["React", "Web Technologies"],
     image: "/previews/Cronicle.png",
     githubUrl: "https://github.com/neonninja-9/Chronicle.git",
-    liveUrl: "https://chronicle-journal-neon.vercel.app/wall",
+    liveUrl: "https://chroniclejournal.vercel.app",
     featured: true,
     comingSoon: false,
   },
